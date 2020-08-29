@@ -7,6 +7,9 @@ import ImageTemplate3 from "./templates/template3/ImageTemplate3";
 
 import Spinner from "./UI/Spinner/Spinner";
 
+const GOOGLE_PROXY_SERVER =
+  "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
+
 class App extends Component {
   state = {
     loading: false,
@@ -42,7 +45,9 @@ class App extends Component {
       }
 
       if (metaTagsList[i].getAttribute("property") === "og:image") {
-        metaInfo.image = metaTagsList[i].getAttribute("content");
+        metaInfo.image =
+          GOOGLE_PROXY_SERVER +
+          encodeURIComponent(metaTagsList[i].getAttribute("content"));
       }
 
       if (metaTagsList[i].getAttribute("property") === "og:title") {

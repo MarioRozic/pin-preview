@@ -16,7 +16,7 @@ export default class ImageTemplate1 extends Component {
         <Color
           src={image}
           //   src="https://images.unsplash.com/photo-1598609456165-a57afb2fb2ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
-          crossOrigin="anonymous"
+          crossOrigin="Anonymous"
           format="rgbArray"
         >
           {({ data, loading, error }) => {
