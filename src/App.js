@@ -1,26 +1,98 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import Axios from "axios";
+import ImageTemplate1 from "./templates/template1/ImageTemplate1";
+import ImageTemplate2 from "./templates/template2/ImageTemplate2";
+import ImageTemplate3 from "./templates/template3/ImageTemplate3";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Spinner from "./UI/Spinner/Spinner";
+
+class App extends Component {
+  state = {
+    loading: false,
+    displayTemplate: false,
+    urlString: "",
+    metaInfo: {},
+  };
+
+  async componentDidMount(req) {}
+
+  handleInput = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  generateHandler = async () => {
+    let { urlString } = this.state;
+    this.setState({ loading: true, displayTemplate: false });
+    const html = await Axios({
+      method: "GET",
+      url: `https://cors-anywhere.herokuapp.com/${urlString}`,
+    });
+
+    var el = document.createElement("html");
+    el.innerHTML = html.data;
+
+    let metaTagsList = el.getElementsByTagName("meta");
+    let metaInfo = {};
+
+    for (let i = 0; i < metaTagsList.length; i++) {
+      // console.log(metaTagsList[i]);
+      if (metaTagsList[i].getAttribute("property") === "og:description") {
+        metaInfo.description = metaTagsList[i].getAttribute("content");
+      }
+
+      if (metaTagsList[i].getAttribute("property") === "og:image") {
+        metaInfo.image = metaTagsList[i].getAttribute("content");
+      }
+
+      if (metaTagsList[i].getAttribute("property") === "og:title") {
+        metaInfo.title = metaTagsList[i].getAttribute("content");
+      }
+
+      if (metaTagsList[i].getAttribute("property") === "og:url") {
+        metaInfo.url = metaTagsList[i].getAttribute("content");
+      }
+
+      if (metaTagsList[i].getAttribute("property") === "og:site_name") {
+        metaInfo.site_name = metaTagsList[i].getAttribute("content");
+      }
+    }
+
+    // set meta obj
+    this.setState({
+      loading: false,
+      displayTemplate: true,
+      metaInfo,
+      urlString: "",
+    });
+  };
+
+  render() {
+    let { loading, metaInfo, displayTemplate } = this.state;
+    return (
+      <div className="App">
+        <div style={{ padding: "50px" }}>
+          <input
+            type="text"
+            onChange={this.handleInput}
+            value={this.state.urlString}
+            name="urlString"
+          />
+          <button onClick={this.generateHandler}>Generate</button>
+        </div>
+
+        {loading ? (
+          <Spinner />
+        ) : displayTemplate ? (
+          <div className="appTemplateList">
+            <ImageTemplate1 metaInfo={metaInfo} />
+            <ImageTemplate2 metaInfo={metaInfo} />
+            <ImageTemplate3 metaInfo={metaInfo} />
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 }
 
 export default App;

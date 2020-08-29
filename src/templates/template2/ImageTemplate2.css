@@ -1,0 +1,30 @@
+.templateCover2 {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.templateCoverText2 {
+  top: 0px;
+  position: absolute;
+  padding: 0 20px;
+}
+
+.templateCoverText2 p:nth-child(2) {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: "Caveat", cursive;
+}
+
+.templateCoverText2 p:nth-child(1) {
+  color: #fff;
+  font-size: 15px;
+}

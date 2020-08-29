@@ -1,0 +1,66 @@
+.template {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.templateLoading {
+  width: 500px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.templateBox {
+  width: 400px;
+  height: 700px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.templateBox img {
+  /* width: 100%;
+    height: 100%; */
+  object-fit: cover;
+  min-height: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.templateCover {
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.templateCoverText {
+  bottom: 0px;
+  position: absolute;
+  padding: 0 20px;
+}
+
+.templateCoverText p:nth-child(1) {
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: "Dancing Script";
+}
+
+.templateCoverText p:nth-child(2) {
+  color: #fff;
+  font-size: 15px;
+}
+
+/* linear-gradient(to bottom, rgba(24, 38, 45, 0) 0%,rgba(24, 38, 45, 1) 50%) */
