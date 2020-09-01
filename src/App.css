@@ -2,6 +2,7 @@
   text-align: center;
   background: #4984b8;
   height: 100vh;
+  overflow: auto;
 }
 
 .App input {
