@@ -67,11 +67,11 @@ export default class ImageTemplate1Black extends Component {
           }}
         </Color>
         <div>
-          <button
+          {/* <button
             onClick={() => exportComponentAsJPEG(this.componentRef, "slika")}
           >
             Export As JPEG
-          </button>
+          </button> */}
         </div>
       </div>
     );
