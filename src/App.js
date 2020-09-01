@@ -8,6 +8,10 @@ import ImageTemplate3 from "./templates/template3/ImageTemplate3";
 import Spinner from "./UI/Spinner/Spinner";
 import ImageTemplate1Black from "./templates/template1/ImageTemplate1Black";
 import ImageTemplate1Reverse from "./templates/template1/ImageTemplate1Reverse";
+import ImageTemplate2Black from "./templates/template2/ImageTemplate2Black";
+import ImageTemplate2Reverse from "./templates/template2/ImageTemplate2Reverse";
+import ImageTemplate3Black from "./templates/template3/ImageTemplate3Black";
+import ImageTemplate3Reverse from "./templates/template3/ImageTemplate3Reverse";
 
 const GOOGLE_PROXY_SERVER =
   "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
@@ -98,9 +102,14 @@ class App extends Component {
               <ImageTemplate1Reverse metaInfo={metaInfo} />
             </div>
             <div className="appTemplateList">
-              <ImageTemplate1 metaInfo={metaInfo} />
               <ImageTemplate2 metaInfo={metaInfo} />
+              <ImageTemplate2Black metaInfo={metaInfo} />
+              <ImageTemplate2Reverse metaInfo={metaInfo} />
+            </div>
+            <div className="appTemplateList">
               <ImageTemplate3 metaInfo={metaInfo} />
+              <ImageTemplate3Black metaInfo={metaInfo} />
+              <ImageTemplate3Reverse metaInfo={metaInfo} />
             </div>
           </>
         ) : null}
