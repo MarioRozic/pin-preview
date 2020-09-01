@@ -11,6 +11,20 @@ export default class ImageTemplate1 extends Component {
 
   render() {
     let { image, title, site_name } = this.props.metaInfo;
+
+    let fontSize = 40;
+
+    console.log(title.length);
+    if (title.length <= 40) {
+      fontSize = 55;
+    } else if (title.length <= 50) {
+      fontSize = 50;
+    } else if (title.length <= 60) {
+      fontSize = 45;
+    } else if (title.length <= 70) {
+      fontSize = 40;
+    }
+
     return (
       <div className="template">
         <Color
@@ -38,11 +52,13 @@ export default class ImageTemplate1 extends Component {
                 <div
                   className="templateCover"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 0.9) 65%)`,
+                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 30%)`,
                   }}
                 >
+                  <div className="templateCoverTextTop">
+                    <p style={{ fontSize: fontSize }}>{title}</p>
+                  </div>
                   <div className="templateCoverText">
-                    <p>{title}</p>
                     <p>{site_name}</p>
                   </div>
                 </div>
