@@ -7,6 +7,7 @@ import ImageTemplate3 from "./templates/template3/ImageTemplate3";
 
 import Spinner from "./UI/Spinner/Spinner";
 import ImageTemplate1Black from "./templates/template1/ImageTemplate1Black";
+import ImageTemplate1Reverse from "./templates/template1/ImageTemplate1Reverse";
 
 const GOOGLE_PROXY_SERVER =
   "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
@@ -94,7 +95,7 @@ class App extends Component {
             <div className="appTemplateList">
               <ImageTemplate1 metaInfo={metaInfo} />
               <ImageTemplate1Black metaInfo={metaInfo} />
-              <ImageTemplate3 metaInfo={metaInfo} />
+              <ImageTemplate1Reverse metaInfo={metaInfo} />
             </div>
             <div className="appTemplateList">
               <ImageTemplate1 metaInfo={metaInfo} />
