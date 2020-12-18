@@ -3,11 +3,24 @@ import Color from "color-thief-react";
 
 import "./ImageTemplate2.css";
 
-import { exportComponentAsJPEG } from "react-component-export-image";
 import Spinner from "../../UI/Spinner/Spinner";
+import htmlToImage from "html-to-image";
 
 export default class ImageTemplate2Black extends Component {
   componentRef = React.createRef();
+
+  onClickHandler = () => {
+    let imageName = this.props.metaInfo.title.split(" ").join("-");
+
+    htmlToImage
+      .toJpeg(document.getElementById("template2Black"), { quality: 0.7 })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
+        link.download = `${imageName}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+      });
+  };
 
   render() {
     let { image, title, site_name } = this.props.metaInfo;
@@ -20,7 +33,6 @@ export default class ImageTemplate2Black extends Component {
           format="rgbArray"
         >
           {({ data, loading, error }) => {
-            console.log(data);
             if (loading)
               return (
                 <div className="templateLoading">
@@ -30,12 +42,14 @@ export default class ImageTemplate2Black extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <div
+                id="template2Black"
                 className="templateBox"
                 ref={this.componentRef}
                 name={site_name}
                 style={{ overflow: "hidden" }}
+                onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ marginTop: "140px" }} />
+                <img src={image} alt="" style={{ paddingTop: "200px" }} />
                 <div
                   className="templateCover2"
                   style={{

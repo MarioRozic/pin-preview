@@ -3,18 +3,31 @@ import Color from "color-thief-react";
 
 import "./ImageTemplate1.css";
 
-import { exportComponentAsJPEG } from "react-component-export-image";
 import Spinner from "../../UI/Spinner/Spinner";
+
+import htmlToImage from "html-to-image";
 
 export default class ImageTemplate1 extends Component {
   componentRef = React.createRef();
+
+  onClickHandler = () => {
+    let imageName = this.props.metaInfo.title.split(" ").join("-");
+
+    htmlToImage
+      .toJpeg(document.getElementById("template1"), { quality: 0.7 })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
+        link.download = `${imageName}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+      });
+  };
 
   render() {
     let { image, title, site_name } = this.props.metaInfo;
 
     let fontSize = 40;
 
-    console.log(title.length);
     if (title.length <= 40) {
       fontSize = 55;
     } else if (title.length <= 50) {
@@ -34,7 +47,6 @@ export default class ImageTemplate1 extends Component {
           format="rgbArray"
         >
           {({ data, loading, error }) => {
-            console.log(data);
             if (loading)
               return (
                 <div className="templateLoading">
@@ -44,15 +56,17 @@ export default class ImageTemplate1 extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <div
+                id="template1"
                 className="templateBox"
                 ref={this.componentRef}
                 name={site_name}
+                onClick={this.onClickHandler}
               >
-                <img src={image} alt="" />
+                <img src={image} alt="" style={{ paddingBottom: "300px" }} />
                 <div
                   className="templateCover"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 30%)`,
+                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 50%)`,
                   }}
                 >
                   <div className="templateCoverTextTop">

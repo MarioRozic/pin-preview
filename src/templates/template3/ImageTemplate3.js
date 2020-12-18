@@ -4,11 +4,24 @@ import { Palette } from "color-thief-react";
 
 import "./ImageTemplate3.css";
 
-import { exportComponentAsJPEG } from "react-component-export-image";
 import Spinner from "../../UI/Spinner/Spinner";
+import htmlToImage from "html-to-image";
 
 export default class ImageTemplate2 extends Component {
   componentRef = React.createRef();
+
+  onClickHandler = () => {
+    let imageName = this.props.metaInfo.title.split(" ").join("-");
+
+    htmlToImage
+      .toJpeg(document.getElementById("template3"), { quality: 0.7 })
+      .then(function (dataUrl) {
+        var link = document.createElement("a");
+        link.download = `${imageName}.jpeg`;
+        link.href = dataUrl;
+        link.click();
+      });
+  };
 
   render() {
     let { image, title, site_name } = this.props.metaInfo;
@@ -21,7 +34,6 @@ export default class ImageTemplate2 extends Component {
           format="hex"
         >
           {({ data, loading, error }) => {
-            console.log(data);
             if (loading)
               return (
                 <div className="templateLoading">
@@ -41,7 +53,6 @@ export default class ImageTemplate2 extends Component {
                   loading: paletteLoading,
                   error: paletteError,
                 }) => {
-                  console.log("palette", paletteData);
                   if (paletteLoading)
                     return (
                       <div className="templateLoading">
@@ -51,9 +62,11 @@ export default class ImageTemplate2 extends Component {
                   if (paletteError) return <p>{paletteError.message}</p>;
                   return (
                     <div
+                      id="template3"
                       className="templateBox"
                       ref={this.componentRef}
                       name={site_name}
+                      onClick={this.onClickHandler}
                     >
                       <img src={image} alt="" />
                       <div className="templateCover3">
@@ -64,7 +77,10 @@ export default class ImageTemplate2 extends Component {
                           <p>{title}</p>
                         </div>
                         <div
-                          style={{ background: paletteData[1] }}
+                          style={{
+                            // background: paletteData[1],
+                            background: data,
+                          }}
                           className="templateCover3BoxSmall"
                         >
                           <p>{site_name}</p>

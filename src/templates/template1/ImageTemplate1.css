@@ -1,5 +1,5 @@
 .template {
-  width: 500px;
+  width: 550px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -8,7 +8,7 @@
 
 .templateLoading {
   width: 500px;
-  height: 700px;
+  height: 750px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -16,10 +16,80 @@
 }
 
 .templateBox {
-  width: 400px;
-  height: 700px;
+  width: 500px;
+  height: 750px;
   position: relative;
   margin-bottom: 20px;
+
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.thumbnail-inner {
+  transition: transform 0.28s ease;
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.templateDownload {
+  display: none;
+  font-size: 25px;
+  color: #ffffff !important;
+  font-family: sans-serif;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 500px;
+  left: -35px;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.templateBox:hover .thumbnail-inner,
+.templateBox:focus .thumbnail-inner {
+  -ms-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.templateBox:hover .thumbnail-inner:before,
+.templateBox:focus .thumbnail-inner:before {
+  display: block;
+}
+.templateBox:hover .templateDownload,
+.templateBox:focus .templateDownload {
+  display: block;
+}
+
+.thumbnail-inner:before {
+  z-index: 1;
+  content: "";
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(#f6004e6c 10%, #000 100%);
+
+  border-radius: 5px;
 }
 
 .templateBox img {
@@ -32,9 +102,13 @@
   max-height: 100%;
 }
 
+.templateBox:hover img {
+  transform: scale(1) translateZ(0);
+}
+
 .templateCover {
   width: 100%;
-  height: 400px;
+  height: 600px;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -42,10 +116,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding-top: 150px;
 }
 
 .templateCoverTextTop {
-  top: 75px;
   position: absolute;
   padding: 0 20px;
 }
@@ -60,8 +135,8 @@
   color: #fff;
   font-size: 43px;
   font-weight: bold;
-  margin-bottom: 20px;
-  font-family: "Dancing Script";
+  margin-bottom: 0px;
+  /* font-family: "Dancing Script"; */
 }
 
 .templateCoverText p {
