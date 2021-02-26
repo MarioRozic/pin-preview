@@ -7,7 +7,13 @@ import "./ImageTemplate3.css";
 import Spinner from "../../UI/Spinner/Spinner";
 import htmlToImage from "html-to-image";
 
-export default class ImageTemplate2 extends Component {
+export default class ImageTemplate3 extends Component {
+  state = {
+    titleFontSize: 35,
+    linkFontSize: 15,
+    titleFontFamily: "Antonio",
+    siteFontFamily: "Antonio",
+  };
   componentRef = React.createRef();
 
   onClickHandler = () => {
@@ -23,8 +29,24 @@ export default class ImageTemplate2 extends Component {
       });
   };
 
+  onEditClick = () => {
+    console.log(this.props);
+
+    this.props.history.push({
+      pathname: `/edit/template3`,
+      state: { metaInfo: this.props.metaInfo, imageList: this.props.imageList },
+    });
+  };
+
   render() {
     let { image, title, site_name } = this.props.metaInfo;
+    let {
+      titleFontSize,
+      linkFontSize,
+      titleFontFamily,
+      siteFontFamily,
+    } = this.state;
+
     return (
       <div className="template">
         <Color
@@ -74,7 +96,30 @@ export default class ImageTemplate2 extends Component {
                           style={{ background: data }}
                           className="templateCover3Box"
                         >
-                          <p>{title}</p>
+                          <p
+                            style={{
+                              fontFamily: this.props.titleFontFamily
+                                ? this.props.titleFontFamily
+                                : titleFontFamily,
+                              fontSize: `${
+                                this.props.titleFontSize
+                                  ? this.props.titleFontSize
+                                  : titleFontSize
+                              }px`,
+                              color: `${
+                                this.props.titleFontColor
+                                  ? this.props.titleFontColor
+                                  : "#fff"
+                              }`,
+                              background: `${
+                                this.props.titleBackgroundColor
+                                  ? this.props.titleBackgroundColor
+                                  : "transparent"
+                              }`,
+                            }}
+                          >
+                            {this.props.title ? this.props.title : title}
+                          </p>
                         </div>
                         <div
                           style={{
@@ -83,7 +128,30 @@ export default class ImageTemplate2 extends Component {
                           }}
                           className="templateCover3BoxSmall"
                         >
-                          <p>{site_name}</p>
+                          <p
+                            style={{
+                              fontFamily: this.props.siteFontFamily
+                                ? this.props.siteFontFamily
+                                : siteFontFamily,
+                              fontSize: `${
+                                this.props.linkFontSize
+                                  ? this.props.linkFontSize
+                                  : linkFontSize
+                              }px`,
+                              color: `${
+                                this.props.siteFontColor
+                                  ? this.props.siteFontColor
+                                  : "#fff"
+                              }`,
+                              background: `${
+                                this.props.siteBackgroundColor
+                                  ? this.props.siteBackgroundColor
+                                  : "transparent"
+                              }`,
+                            }}
+                          >
+                            {site_name}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -93,13 +161,16 @@ export default class ImageTemplate2 extends Component {
             );
           }}
         </Color>
-        <div>
-          {/* <button
-            onClick={() => exportComponentAsJPEG(this.componentRef, "slika")}
-          >
-            Export As JPEG
-          </button> */}
-        </div>
+        {this.props.hideButtons ? null : (
+          <div className="templateButtons">
+            <button className="templateButtonInfo" onClick={this.onEditClick}>
+              Edit
+            </button>
+            <button className="templateButton" onClick={this.onClickHandler}>
+              Download
+            </button>
+          </div>
+        )}
       </div>
     );
   }

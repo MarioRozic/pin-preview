@@ -8,6 +8,12 @@ import Spinner from "../../UI/Spinner/Spinner";
 import htmlToImage from "html-to-image";
 
 export default class ImageTemplate6 extends Component {
+  state = {
+    titleFontSize: 35,
+    linkFontSize: 15,
+    titleFontFamily: "Lora",
+    siteFontFamily: "Lora",
+  };
   componentRef = React.createRef();
 
   onClickHandler = () => {
@@ -23,8 +29,24 @@ export default class ImageTemplate6 extends Component {
       });
   };
 
+  onEditClick = () => {
+    console.log(this.props);
+
+    this.props.history.push({
+      pathname: `/edit/template6`,
+      state: { metaInfo: this.props.metaInfo, imageList: this.props.imageList },
+    });
+  };
+
   render() {
     let { image, title, site_name } = this.props.metaInfo;
+    let {
+      titleFontSize,
+      linkFontSize,
+      titleFontFamily,
+      siteFontFamily,
+    } = this.state;
+
     return (
       <div className="template">
         <Color
@@ -95,15 +117,31 @@ export default class ImageTemplate6 extends Component {
                         >
                           <p
                             style={{
-                              fontSize: 35,
-                              color: "#fff",
                               fontWeight: "900",
                               margin: "15px 0",
                               textTransform: "uppercase",
-                              fontFamily: "Lora",
+
+                              fontFamily: this.props.titleFontFamily
+                                ? this.props.titleFontFamily
+                                : titleFontFamily,
+                              fontSize: `${
+                                this.props.titleFontSize
+                                  ? this.props.titleFontSize
+                                  : titleFontSize
+                              }px`,
+                              color: `${
+                                this.props.titleFontColor
+                                  ? this.props.titleFontColor
+                                  : "#fff"
+                              }`,
+                              background: `${
+                                this.props.titleBackgroundColor
+                                  ? this.props.titleBackgroundColor
+                                  : "transparent"
+                              }`,
                             }}
                           >
-                            {title}
+                            {this.props.title ? this.props.title : title}
                           </p>
                         </div>
                         <div
@@ -122,9 +160,24 @@ export default class ImageTemplate6 extends Component {
                         >
                           <p
                             style={{
-                              color: "#fff",
-                              fontSize: "15px",
-                              fontFamily: "Lora",
+                              fontFamily: this.props.siteFontFamily
+                                ? this.props.siteFontFamily
+                                : siteFontFamily,
+                              fontSize: `${
+                                this.props.linkFontSize
+                                  ? this.props.linkFontSize
+                                  : linkFontSize
+                              }px`,
+                              color: `${
+                                this.props.siteFontColor
+                                  ? this.props.siteFontColor
+                                  : "#fff"
+                              }`,
+                              background: `${
+                                this.props.siteBackgroundColor
+                                  ? this.props.siteBackgroundColor
+                                  : "transparent"
+                              }`,
                             }}
                           >
                             {site_name}
@@ -138,13 +191,16 @@ export default class ImageTemplate6 extends Component {
             );
           }}
         </Color>
-        <div>
-          {/* <button
-            onClick={() => exportComponentAsJPEG(this.componentRef, "slika")}
-          >
-            Export As JPEG
-          </button> */}
-        </div>
+        {this.props.hideButtons ? null : (
+          <div className="templateButtons">
+            <button className="templateButtonInfo" onClick={this.onEditClick}>
+              Edit
+            </button>
+            <button className="templateButton" onClick={this.onClickHandler}>
+              Download
+            </button>
+          </div>
+        )}
       </div>
     );
   }

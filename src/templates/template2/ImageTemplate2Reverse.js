@@ -24,6 +24,19 @@ export default class ImageTemplate2Black extends Component {
 
   render() {
     let { image, title, site_name } = this.props.metaInfo;
+
+    let fontSize = 35;
+
+    if (title.length <= 40) {
+      fontSize = 48;
+    } else if (title.length <= 50) {
+      fontSize = 43;
+    } else if (title.length <= 60) {
+      fontSize = 38;
+    } else if (title.length <= 70) {
+      fontSize = 33;
+    }
+
     return (
       <div className="template">
         <Color
@@ -49,24 +62,18 @@ export default class ImageTemplate2Black extends Component {
                 style={{ overflow: "hidden" }}
                 onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingTop: "200px" }} />
+                <img src={image} alt="" style={{ paddingTop: "150px" }} />
                 <div
                   className="templateCover2"
                   style={{
-                    background: `linear-gradient(to top, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 45%)`,
+                    background: `linear-gradient(to top, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}) 74%)`,
                   }}
                 >
                   <div className="templateCoverText2">
+                    <p>{site_name}</p>
                     <p
                       style={{
-                        "mix-blend-mode": "difference",
-                      }}
-                    >
-                      {site_name}
-                    </p>
-                    <p
-                      style={{
-                        "mix-blend-mode": "difference",
+                        fontSize: fontSize,
                       }}
                     >
                       {title}

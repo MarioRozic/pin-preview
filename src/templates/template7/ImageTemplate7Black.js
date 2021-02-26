@@ -99,11 +99,12 @@ export default class ImageTemplate7Black extends Component {
                           <p
                             style={{
                               color: "#fff",
-                              fontSize: "15px",
+                              fontSize: "17px",
                               textTransform: "uppercase",
                               fontWeight: "700",
                               top: "5px",
                               position: "absolute",
+                              fontFamily: "Gagalin",
                             }}
                           >
                             {site_name}
@@ -118,11 +119,12 @@ export default class ImageTemplate7Black extends Component {
                         >
                           <p
                             style={{
-                              fontSize: 35,
+                              fontSize: 37,
                               color: "#fff",
                               fontWeight: "900",
                               margin: "15px 0",
                               textTransform: "uppercase",
+                              fontFamily: "Gagalin",
                             }}
                           >
                             {title}

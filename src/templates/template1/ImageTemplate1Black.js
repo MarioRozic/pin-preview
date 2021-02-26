@@ -62,15 +62,17 @@ export default class ImageTemplate1Black extends Component {
                 name={site_name}
                 onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingBottom: "300px" }} />
+                <img src={image} alt="" style={{ paddingBottom: "150px" }} />
                 <div
                   className="templateCover"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 50%)`,
+                    background: `linear-gradient(to bottom, rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 74%)`,
                   }}
                 >
                   <div className="templateCoverTextTop">
-                    <p style={{ fontSize: fontSize }}>{title}</p>
+                    <p style={{ fontSize: fontSize, fontFamily: "BodoniFLF" }}>
+                      {title}
+                    </p>
                   </div>
                   <div className="templateCoverText">
                     <p>{site_name}</p>

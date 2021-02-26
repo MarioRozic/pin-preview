@@ -8,6 +8,12 @@ import Spinner from "../../UI/Spinner/Spinner";
 import htmlToImage from "html-to-image";
 
 export default class ImageTemplate5Black extends Component {
+  state = {
+    titleFontSize: 45,
+    linkFontSize: 20,
+    titleFontFamily: "Bebas Neue",
+    siteFontFamily: "Bebas Neue",
+  };
   componentRef = React.createRef();
 
   onClickHandler = () => {
@@ -23,8 +29,24 @@ export default class ImageTemplate5Black extends Component {
       });
   };
 
+  onEditClick = () => {
+    console.log(this.props);
+
+    this.props.history.push({
+      pathname: `/edit/template5Black`,
+      state: { metaInfo: this.props.metaInfo, imageList: this.props.imageList },
+    });
+  };
+
   render() {
     let { image, title, site_name } = this.props.metaInfo;
+    let {
+      titleFontSize,
+      linkFontSize,
+      titleFontFamily,
+      siteFontFamily,
+    } = this.state;
+
     return (
       <div className="template">
         <Color
@@ -79,8 +101,29 @@ export default class ImageTemplate5Black extends Component {
                           }}
                           className="templateCover3Box"
                         >
-                          <p style={{ fontSize: 45, fontFamily: "Bebas Neue" }}>
-                            {title}
+                          <p
+                            style={{
+                              fontFamily: this.props.titleFontFamily
+                                ? this.props.titleFontFamily
+                                : titleFontFamily,
+                              fontSize: `${
+                                this.props.titleFontSize
+                                  ? this.props.titleFontSize
+                                  : titleFontSize
+                              }px`,
+                              color: `${
+                                this.props.titleFontColor
+                                  ? this.props.titleFontColor
+                                  : "white"
+                              }`,
+                              background: `${
+                                this.props.titleBackgroundColor
+                                  ? this.props.titleBackgroundColor
+                                  : "transparent"
+                              }`,
+                            }}
+                          >
+                            {this.props.title ? this.props.title : title}
                           </p>
                         </div>
                         <div
@@ -88,7 +131,24 @@ export default class ImageTemplate5Black extends Component {
                             // background: paletteData[1],
                             background: `rgba(0,0,0, 0.6)`,
                             width: "100%",
-                            fontFamily: "Bebas Neue",
+                            fontFamily: this.props.siteFontFamily
+                              ? this.props.siteFontFamily
+                              : siteFontFamily,
+                            fontSize: `${
+                              this.props.linkFontSize
+                                ? this.props.linkFontSize
+                                : linkFontSize
+                            }px`,
+                            color: `${
+                              this.props.siteFontColor
+                                ? this.props.siteFontColor
+                                : "white"
+                            }`,
+                            background: `${
+                              this.props.siteBackgroundColor
+                                ? this.props.siteBackgroundColor
+                                : "transparent"
+                            }`,
                           }}
                           className="templateCover3BoxSmall"
                         >
@@ -102,13 +162,16 @@ export default class ImageTemplate5Black extends Component {
             );
           }}
         </Color>
-        <div>
-          {/* <button
-            onClick={() => exportComponentAsJPEG(this.componentRef, "slika")}
-          >
-            Export As JPEG
-          </button> */}
-        </div>
+        {this.props.hideButtons ? null : (
+          <div className="templateButtons">
+            <button className="templateButtonInfo" onClick={this.onEditClick}>
+              Edit
+            </button>
+            <button className="templateButton" onClick={this.onClickHandler}>
+              Download
+            </button>
+          </div>
+        )}
       </div>
     );
   }

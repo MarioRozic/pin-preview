@@ -62,11 +62,11 @@ export default class ImageTemplate1Reverse extends Component {
                 name={site_name}
                 onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingBottom: "300px" }} />
+                <img src={image} alt="" style={{ paddingBottom: "150px" }} />
                 <div
                   className="templateCover"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 50%)`,
+                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 74%)`,
                   }}
                 >
                   <div className="templateCoverTextTop">
@@ -74,6 +74,7 @@ export default class ImageTemplate1Reverse extends Component {
                       style={{
                         fontSize: fontSize,
                         "mix-blend-mode": "difference",
+                        fontFamily: "BodoniFLF",
                       }}
                     >
                       {title}

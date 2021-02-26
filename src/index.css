@@ -22,6 +22,60 @@
     url("./fonts/Montserrat-Medium.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Woodland";
+  src: local("Woodland"), url("./fonts/Woodland.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gagalin";
+  src: local("Gagalin"), url("./fonts/Gagalin-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "BodoniFLF";
+  src: local("BodoniFLF"), url("./fonts/BodoniFLF-Roman.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Antonio";
+  src: local("Antonio"), url("./fonts/Antonio-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: local("Poppins-Regular"),
+    url("./fonts/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins-SemiBold";
+  src: local("Poppins-SemiBold"),
+    url("./fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Yellowtail-Regular";
+  src: local("Yellowtail-Regular"),
+    url("./fonts/Yellowtail-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat-Light";
+  src: local("Montserrat-Light"),
+    url("./fonts/Montserrat-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins-Light";
+  src: local("Poppins-Light"),
+    url("./fonts/Poppins-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: local("OpenSans-Bold"),
+    url("./fonts/OpenSans-Bold.ttf") format("truetype");
+}
+
 body {
   margin: 0;
 

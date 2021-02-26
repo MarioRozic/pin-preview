@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import Color from "color-thief-react";
 
-import "./ImageTemplate2.css";
-
 import Spinner from "../../UI/Spinner/Spinner";
+
 import htmlToImage from "html-to-image";
 
-export default class ImageTemplate2 extends Component {
+export default class ImageTemplate8Black extends Component {
   componentRef = React.createRef();
 
   onClickHandler = () => {
     let imageName = this.props.metaInfo.title.split(" ").join("-");
 
     htmlToImage
-      .toJpeg(document.getElementById("template2"), { quality: 0.7 })
+      .toJpeg(document.getElementById("template1"), { quality: 0.7 })
       .then(function (dataUrl) {
         var link = document.createElement("a");
         link.download = `${imageName}.jpeg`;
@@ -25,24 +24,12 @@ export default class ImageTemplate2 extends Component {
   render() {
     let { image, title, site_name } = this.props.metaInfo;
 
-    let fontSize = 35;
-
-    if (title.length <= 40) {
-      fontSize = 48;
-    } else if (title.length <= 50) {
-      fontSize = 43;
-    } else if (title.length <= 60) {
-      fontSize = 38;
-    } else if (title.length <= 70) {
-      fontSize = 33;
-    }
-
     return (
       <div className="template">
         <Color
           src={image}
           //   src="https://images.unsplash.com/photo-1598609456165-a57afb2fb2ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
-          crossOrigin="anonymous"
+          crossOrigin="Anonymous"
           format="rgbArray"
         >
           {({ data, loading, error }) => {
@@ -55,23 +42,60 @@ export default class ImageTemplate2 extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <div
-                id="template2"
+                id="template1"
                 className="templateBox"
                 ref={this.componentRef}
                 name={site_name}
-                style={{ overflow: "hidden" }}
                 onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingTop: "150px" }} />
+                <img src={image} alt="" style={{}} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/Pinterest 7.png`}
+                  alt=""
+                  style={{ position: "absolute", left: 0 }}
+                />
                 <div
-                  className="templateCover2"
                   style={{
-                    background: `linear-gradient(to top, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 74%)`,
+                    width: "100%",
+                    height: "190px",
+                    position: "absolute",
+                    bottom: 0,
                   }}
                 >
-                  <div className="templateCoverText2">
-                    <p>{site_name}</p>
-                    <p style={{ fontSize: fontSize }}>{title}</p>
+                  <div
+                    style={{
+                      width: "290px",
+                      position: "absolute",
+                      right: "10px",
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "#000",
+                        fontFamily: "Bebas Neue",
+                        fontSize: "30px",
+                      }}
+                    >
+                      {title}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "0",
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
+                    <p
+                      style={{
+                        color: "#000",
+                        fontFamily: "Bebas Neue",
+                        fontSize: "20px",
+                      }}
+                    >
+                      {site_name}
+                    </p>
                   </div>
                 </div>
               </div>

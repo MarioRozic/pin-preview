@@ -99,12 +99,13 @@ export default class ImageTemplate7Reverse extends Component {
                           <p
                             style={{
                               color: "#fff",
-                              fontSize: "15px",
+                              fontSize: "17px",
                               textTransform: "uppercase",
                               fontWeight: "700",
                               "mix-blend-mode": "difference",
                               top: "5px",
                               position: "absolute",
+                              fontFamily: "Gagalin",
                             }}
                           >
                             {site_name}
@@ -119,12 +120,13 @@ export default class ImageTemplate7Reverse extends Component {
                         >
                           <p
                             style={{
-                              fontSize: 35,
+                              fontSize: 37,
                               color: "#fff",
                               fontWeight: "900",
                               margin: "15px 0",
                               textTransform: "uppercase",
                               "mix-blend-mode": "difference",
+                              fontFamily: "Gagalin",
                             }}
                           >
                             {title}

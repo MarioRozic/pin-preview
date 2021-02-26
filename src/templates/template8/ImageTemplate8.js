@@ -1,44 +1,25 @@
 import React, { Component } from "react";
 import Color from "color-thief-react";
 
-import "./ImageTemplate1.css";
-
 import Spinner from "../../UI/Spinner/Spinner";
 
 import htmlToImage from "html-to-image";
 
-export default class ImageTemplate1 extends Component {
+export default class ImageTemplate8 extends Component {
   state = {
-    titleFontSize: 43,
-    linkFontSize: 15,
-    titleFontFamily: "BodoniFLF",
-    siteFontFamily: "BodoniFLF",
+    titleFontSize: 30,
+    linkFontSize: 20,
+    titleFontFamily: "Bebas Neue",
+    siteFontFamily: "Bebas Neue",
   };
+
   componentRef = React.createRef();
-
-  componentDidMount() {
-    let { title } = this.props.metaInfo;
-    let fontSize = 40;
-
-    if (title.length <= 40) {
-      fontSize = 55;
-    } else if (title.length <= 50) {
-      fontSize = 50;
-    } else if (title.length <= 60) {
-      fontSize = 45;
-    } else if (title.length <= 70) {
-      fontSize = 40;
-    }
-    this.setState({
-      titleFontSize: fontSize,
-    });
-  }
 
   onClickHandler = () => {
     let imageName = this.props.metaInfo.title.split(" ").join("-");
 
     htmlToImage
-      .toJpeg(document.getElementById("template1"), { quality: 0.7 })
+      .toJpeg(document.getElementById("template8"), { quality: 0.7 })
       .then(function (dataUrl) {
         var link = document.createElement("a");
         link.download = `${imageName}.jpeg`;
@@ -51,7 +32,7 @@ export default class ImageTemplate1 extends Component {
     console.log(this.props);
 
     this.props.history.push({
-      pathname: `/edit/template1`,
+      pathname: `/edit/template8`,
       state: { metaInfo: this.props.metaInfo, imageList: this.props.imageList },
     });
   };
@@ -83,20 +64,33 @@ export default class ImageTemplate1 extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <div
-                id="template1"
+                id="template8"
                 className="templateBox"
                 ref={this.componentRef}
                 name={site_name}
                 onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingBottom: "150px" }} />
+                <img src={image} alt="" style={{}} />
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/Pinterest 7.png`}
+                  alt=""
+                  style={{ position: "absolute", left: 0 }}
+                />
                 <div
-                  className="templateCover"
                   style={{
-                    background: `linear-gradient(to bottom, rgba(${data[0]},${data[1]},${data[2]}, 0) 0%,rgba(${data[0]},${data[1]},${data[2]}, 1) 74%)`,
+                    width: "100%",
+                    height: "190px",
+                    position: "absolute",
+                    bottom: 0,
                   }}
                 >
-                  <div className="templateCoverTextTop">
+                  <div
+                    style={{
+                      width: "290px",
+                      position: "absolute",
+                      right: "10px",
+                    }}
+                  >
                     <p
                       style={{
                         fontFamily: this.props.titleFontFamily
@@ -110,7 +104,7 @@ export default class ImageTemplate1 extends Component {
                         color: `${
                           this.props.titleFontColor
                             ? this.props.titleFontColor
-                            : "#fff"
+                            : "#356f85"
                         }`,
                         background: `${
                           this.props.titleBackgroundColor
@@ -122,7 +116,14 @@ export default class ImageTemplate1 extends Component {
                       {this.props.title ? this.props.title : title}
                     </p>
                   </div>
-                  <div className="templateCoverText">
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "0",
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
                     <p
                       style={{
                         fontFamily: this.props.siteFontFamily
@@ -136,7 +137,7 @@ export default class ImageTemplate1 extends Component {
                         color: `${
                           this.props.siteFontColor
                             ? this.props.siteFontColor
-                            : "#fff"
+                            : "#356f85"
                         }`,
                         background: `${
                           this.props.siteBackgroundColor
@@ -153,16 +154,18 @@ export default class ImageTemplate1 extends Component {
             );
           }}
         </Color>
-        {this.props.hideButtons ? null : (
-          <div className="templateButtons">
-            <button className="templateButtonInfo" onClick={this.onEditClick}>
-              Edit
-            </button>
-            <button className="templateButton" onClick={this.onClickHandler}>
-              Download
-            </button>
-          </div>
-        )}
+        <div>
+          {this.props.hideButtons ? null : (
+            <div className="templateButtons">
+              <button className="templateButtonInfo" onClick={this.onEditClick}>
+                Edit
+              </button>
+              <button className="templateButton" onClick={this.onClickHandler}>
+                Download
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }

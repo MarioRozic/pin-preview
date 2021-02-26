@@ -66,20 +66,26 @@ export default class ImageTemplate4Reverse extends Component {
                   >
                     <div className="templateCoverHoverText">
                       <p
-                        style={
-                          {
-                            // "mix-blend-mode": "difference",
-                          }
-                        }
+                        style={{
+                          fontFamily: "Woodland",
+                          fontSize: "45px",
+                          margin: "20px 10px",
+                        }}
                       >
                         {site_name}
                       </p>
                     </div>
                     <div className="templateCoverHoverTextTop">
                       <p
+                        // style={{
+                        //   // "mix-blend-mode": "difference",
+                        //   margin: "10px 0",
+                        // }}
+
                         style={{
-                          // "mix-blend-mode": "difference",
                           margin: "10px 0",
+                          fontFamily: "Woodland",
+                          fontSize: "70px",
                         }}
                       >
                         {title}

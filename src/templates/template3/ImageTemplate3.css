@@ -23,6 +23,7 @@
   font-size: 35px;
   font-weight: bold;
   margin: 15px 0;
+  font-family: "Antonio";
 }
 
 .templateCover3BoxSmall {
@@ -39,4 +40,5 @@
 .templateCover3BoxSmall p {
   color: #fff;
   font-size: 15px;
+  font-family: "Antonio";
 }

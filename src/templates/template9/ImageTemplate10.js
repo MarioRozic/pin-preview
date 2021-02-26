@@ -1,44 +1,24 @@
 import React, { Component } from "react";
 import Color from "color-thief-react";
 
-import "./ImageTemplate2.css";
-
 import Spinner from "../../UI/Spinner/Spinner";
+
 import htmlToImage from "html-to-image";
 
-export default class ImageTemplate2Black extends Component {
+export default class ImageTemplate10 extends Component {
   state = {
-    titleFontSize: 45,
-    linkFontSize: 15,
-    titleFontFamily: "Montserrat",
-    siteFontFamily: "Montserrat",
+    titleFontSize: 35,
+    linkFontSize: 20,
+    titleFontFamily: "Yellowtail-Regular",
+    siteFontFamily: "Poppins-Regular",
   };
   componentRef = React.createRef();
-
-  componentDidMount() {
-    let { title } = this.props.metaInfo;
-    let fontSize = 35;
-
-    if (title.length <= 40) {
-      fontSize = 48;
-    } else if (title.length <= 50) {
-      fontSize = 43;
-    } else if (title.length <= 60) {
-      fontSize = 38;
-    } else if (title.length <= 70) {
-      fontSize = 33;
-    }
-
-    this.setState({
-      titleFontSize: fontSize,
-    });
-  }
 
   onClickHandler = () => {
     let imageName = this.props.metaInfo.title.split(" ").join("-");
 
     htmlToImage
-      .toJpeg(document.getElementById("template2Black"), { quality: 0.7 })
+      .toJpeg(document.getElementById("template10"), { quality: 0.7 })
       .then(function (dataUrl) {
         var link = document.createElement("a");
         link.download = `${imageName}.jpeg`;
@@ -51,7 +31,7 @@ export default class ImageTemplate2Black extends Component {
     console.log(this.props);
 
     this.props.history.push({
-      pathname: `/edit/template2Black`,
+      pathname: `/edit/template10`,
       state: { metaInfo: this.props.metaInfo, imageList: this.props.imageList },
     });
   };
@@ -65,12 +45,17 @@ export default class ImageTemplate2Black extends Component {
       siteFontFamily,
     } = this.state;
 
+    console.log(this.props);
+    console.log(
+      this.props.siteBackgroundColor ? this.props.siteBackgroundColor : null
+    );
+
     return (
       <div className="template">
         <Color
           src={image}
           //   src="https://images.unsplash.com/photo-1598609456165-a57afb2fb2ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"
-          crossOrigin="anonymous"
+          crossOrigin="Anonymous"
           format="rgbArray"
         >
           {({ data, loading, error }) => {
@@ -83,45 +68,40 @@ export default class ImageTemplate2Black extends Component {
             if (error) return <p>{error.message}</p>;
             return (
               <div
-                id="template2Black"
+                id="template10"
                 className="templateBox"
                 ref={this.componentRef}
                 name={site_name}
-                style={{ overflow: "hidden" }}
-                onClick={this.onClickHandler}
               >
-                <img src={image} alt="" style={{ paddingTop: "150px" }} />
-                <div
-                  className="templateCover2"
+                <img
+                  src={this.props.imageLink ? this.props.imageLink : image}
+                  alt=""
+                  style={{ paddingBottom: "100px" }}
+                />
+                <img
+                  src={`${process.env.PUBLIC_URL}/assets/images/templates/Snow_template.png`}
+                  alt=""
                   style={{
-                    background: `linear-gradient(to top, rgba(0,0,0, 0) 0%,rgba(0,0,0, 1) 74%)`,
+                    position: "absolute",
+                    left: "0px",
+                    bottom: "50px",
+                  }}
+                />
+                <div
+                  style={{
+                    width: "100%",
+                    height: "300px",
+                    position: "absolute",
+                    bottom: 0,
                   }}
                 >
-                  <div className="templateCoverText2">
-                    <p
-                      style={{
-                        fontFamily: this.props.siteFontFamily
-                          ? this.props.siteFontFamily
-                          : siteFontFamily,
-                        fontSize: `${
-                          this.props.linkFontSize
-                            ? this.props.linkFontSize
-                            : linkFontSize
-                        }px`,
-                        color: `${
-                          this.props.siteFontColor
-                            ? this.props.siteFontColor
-                            : "#fff"
-                        }`,
-                        background: `${
-                          this.props.siteBackgroundColor
-                            ? this.props.siteBackgroundColor
-                            : "transparent"
-                        }`,
-                      }}
-                    >
-                      {site_name}
-                    </p>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
                     <p
                       style={{
                         fontFamily: this.props.titleFontFamily
@@ -132,10 +112,12 @@ export default class ImageTemplate2Black extends Component {
                             ? this.props.titleFontSize
                             : titleFontSize
                         }px`,
+                        width: "350px",
+                        textAlign: "center",
                         color: `${
                           this.props.titleFontColor
                             ? this.props.titleFontColor
-                            : "#fff"
+                            : "black"
                         }`,
                         background: `${
                           this.props.titleBackgroundColor
@@ -146,6 +128,45 @@ export default class ImageTemplate2Black extends Component {
                     >
                       {this.props.title ? this.props.title : title}
                     </p>
+                  </div>
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "30px",
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: this.props.siteFontFamily
+                          ? this.props.siteFontFamily
+                          : siteFontFamily,
+                        fontSize: `${
+                          this.props.linkFontSize
+                            ? this.props.linkFontSize
+                            : linkFontSize
+                        }px`,
+                        width: "280px",
+                        height: "50px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: `${
+                          this.props.siteFontColor
+                            ? this.props.siteFontColor
+                            : "black"
+                        }`,
+                        background: `${
+                          this.props.siteBackgroundColor
+                            ? this.props.siteBackgroundColor
+                            : "transparent"
+                        }`,
+                      }}
+                    >
+                      {site_name}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -166,3 +187,8 @@ export default class ImageTemplate2Black extends Component {
     );
   }
 }
+
+// // Specifies the default values for props:
+// ImageTemplate10.defaultProps = {
+//   fontSize: 35,
+// };
